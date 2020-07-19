@@ -31,5 +31,3 @@ input_data = [
     51,
     125,
 ]
-
-print(get_flag(input_data))

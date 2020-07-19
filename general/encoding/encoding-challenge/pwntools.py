@@ -40,17 +40,21 @@ def decode(encoded, encoding):
     return decoded
 
 
-received = json_recv()
-
-while "flag" not in received:
-    out.print("[i]Received type:[/i]")
-    out.print(received["type"])
-    out.print("[i]Received encoded value:[/i]")
-    out.print(received["encoded"])
-
-    to_send = {"decoded": decode(received["encoded"], received["type"])}
-    json_send(to_send)
-
+def get_flag(input_data):
     received = json_recv()
 
-out.print(f"[u]flag[/u]: {received['flag']}")
+    while "flag" not in received:
+        out.print("[i]Received type:[/i]")
+        out.print(received["type"])
+        out.print("[i]Received encoded value:[/i]")
+        out.print(received["encoded"])
+
+        to_send = {"decoded": decode(received["encoded"], received["type"])}
+        json_send(to_send)
+
+        received = json_recv()
+
+    return received["flag"]
+
+
+input_data = None
