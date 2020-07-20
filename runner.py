@@ -1,9 +1,11 @@
 import sys
 import re
 
+import rich.panel
 import rich.console
 import rich.markdown
 import rich.traceback
+from rich import box
 
 out = rich.console.Console()
 Md = rich.markdown.Markdown
@@ -31,5 +33,11 @@ if __name__ == "__main__":
 
     # export
     out.print(Md("## Report Flag"))
-    # out.print(flag)
-    out.print(f"  [bold #68ca68]{flag}[/]")
+    flag_rendered = rich.panel.Panel(
+        f"[bold #70db70 on #383d4d]{flag}[/]",
+        box.ROUNDED,
+        expand=False,
+        padding=1,
+        style="bold #80bc85",
+    )
+    out.print("  ", flag_rendered)
